@@ -11,7 +11,7 @@ const ToDoList = () => {
         height: '100vh', // This sets the height to 100% of the viewport height
       }}
     >
-      <Typography variant="h4">Lets Fucking Do This</Typography>
+      <Typography variant="h1">Lets Fucking Do This</Typography>
     </Box>
   );
 }
