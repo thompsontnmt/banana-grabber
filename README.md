@@ -2,15 +2,24 @@
 
 Welcome to the app
 
-- This is built with next.js -------> it's like react but better
+# Running the App
 
-- node version must be >18.8.0 (Node.js)[https://nodejs.org/en/download]
+- node version must be >18.8.0 (Node.js)[https://nodejs.org/en/download]. For more info on automating the nvm version, find the section below on Setting Up Node.js with NVM. 
 
-- you'll need to install yarn ------> npm install --global yarn
+- For *FIRST TIME* set up, you'll need to install yarn:
+ ```sh
+npm install --global yarn
+  ```
+- If/when `yarn` is already installed, run: 
+```sh
+yarn
+```
+this will ensure that all packages are up to date.
 
-- after confirming its installed, run yarn install
-
-- then run yarn dev
+- To launch the development server and view localhost, run: 
+```sh
+yarn dev
+```
 
 
 # Setting Up Node.js with NVM
