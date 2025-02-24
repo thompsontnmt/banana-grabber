@@ -1,12 +1,8 @@
 import React from 'react';
-import { Box, Button, Stack, Typography } from '@mui/material';
-import ListCard from './components/ListCard';
-//import Button from '@mui/material/Button';
+import { Box, Button, Card, Stack, Typography } from '@mui/material';
 
 const ToDoList = () => {
   return (
-
-  
     <Box
       sx={{
         display: 'flex',
@@ -23,7 +19,12 @@ const ToDoList = () => {
       }}>
         Test
       </Button>
-      <ListCard />
+      <Card sx={{
+        width: 800,
+        height: 500,
+        bgcolor: '#D9D9D9',
+        borderRadius: 10,
+      }} />
     </Box>
 
   );
