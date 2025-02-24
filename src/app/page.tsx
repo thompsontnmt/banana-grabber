@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import ListCard from './components/ListCard';
-
+//import Button from '@mui/material/Button';
 
 const ToDoList = () => {
   return (
@@ -15,25 +15,17 @@ const ToDoList = () => {
         overflow: 'hidden',
       }}
     >
-      <Button
-         sx={{
-          backgroundColor: '#24a0ed',
-          height: '50px',
-          width: '200px',
-          color: 'white',
-          fontFamily: 'Tahoma',
-          fontSize: '24px',
-          margin: '15px',
-          padding: '10px',
-          textAlign: 'center',
-          marginTop: '30px',
-          marginLeft: '30px',
-         }}
-
-        >+Add To Do
+      <Button sx={{
+        width: 50,
+        height: 200,
+        bgcolor: 'blue',
+        borderRadius: 10,
+      }}>
+        Test
       </Button>
-      <ListCard /> 
+      <ListCard />
     </Box>
+
   );
 }
 

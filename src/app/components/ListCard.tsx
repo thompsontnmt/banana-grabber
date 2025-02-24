@@ -9,13 +9,15 @@ import Typography from '@mui/material/Typography';
 
 export default function ListCard() {
   return (
-    <Card sx={{
-      width: '1350px',
-      height: '700px',
-      bgcolor: '#D9D9D9',
-      marginBottom: '30px',
-      marginLeft: '30px',
-      marginRight: '30px',
-    }} />
+    <>
+      <Card sx={{
+        width: 800,
+        height: 500,
+        bgcolor: '#D9D9D9',
+        borderRadius: 10,
+      }} />
+
+
+    </>
   );
 }
