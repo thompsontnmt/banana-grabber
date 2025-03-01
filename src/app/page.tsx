@@ -36,7 +36,7 @@ const ToDoList = () => {
       <Card
         sx={{
           width: 1350,
-          height: 500,
+          height: 550,
           bgcolor: '#D9D9D9',
           borderRadius: 2,
           justifySelf: 'center',
@@ -53,22 +53,24 @@ const ToDoList = () => {
               
             }}>
                 <ListItem
+                // #1
                   sx = {{
                     backgroundColor: 'white',
                     color: 'black',
                     borderRadius: 1,
                     justifySelf: 'center',
                     width: 1250,
-                    height: 100,
+                    height: 80,
                     boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
                     fontFamily: 'tahoma',
                     display: 'grid',
-                    gridTemplate: '1fr / 1fr 10fr 1fr 1fr',
-                    fontSize: '28px',
+                    gridTemplate: '1fr 1fr / 1fr 10fr 1fr 1fr',
+                    fontSize: '24px',
                     
                   }}>
                       <CheckCircleOutline
                         sx= {{
+                          gridArea: '1/1/3/2',
                           color: 'green',
                           backgroundColor: '#D9D9D9',
                           borderRadius: '100%',
@@ -84,12 +86,12 @@ const ToDoList = () => {
                           borderRadius: '100%',
                           fontSize: '60px',
                           justifySelf: 'center',
-                          gridArea: '1 / 3 / 2 / 4',
+                          gridArea: '1 / 3 / 3 / 4',
                         }}></EditOutlined>
 
                         <HighlightOff
                           sx= {{
-                            gridArea: '1 / 4 / 2 / 5',
+                            gridArea: '1 / 4 / 3 / 5',
                             color: 'red',
                             backgroundColor: '#D9D9D9',
                             borderRadius: '100%',
@@ -107,16 +109,17 @@ const ToDoList = () => {
                     borderRadius: 1,
                     justifySelf: 'center',
                     width: 1250,
-                    height: 100,
+                    height: 80,
                     boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
                     fontFamily: 'tahoma',
                     display: 'grid',
-                    gridTemplate: '1fr / 1fr 10fr 1fr 1fr',
-                    fontSize: '28px',
+                    gridTemplate: '1fr 1fr / 1fr 10fr 1fr 1fr',
+                    fontSize: '24px',
                     
                   }}>
                       <CheckCircleOutline
                         sx= {{
+                          gridArea: '1/1/3/2',
                           color: 'green',
                           backgroundColor: '#D9D9D9',
                           borderRadius: '100%',
@@ -132,12 +135,12 @@ const ToDoList = () => {
                           borderRadius: '100%',
                           fontSize: '60px',
                           justifySelf: 'center',
-                          gridArea: '1 / 3 / 2 / 4',
+                          gridArea: '1 / 3 / 3 / 4',
                         }}></EditOutlined>
 
                         <HighlightOff
                           sx= {{
-                            gridArea: '1 / 4 / 2 / 5',
+                            gridArea: '1 / 4 / 3 / 5',
                             color: 'red',
                             backgroundColor: '#D9D9D9',
                             borderRadius: '100%',
@@ -155,16 +158,17 @@ const ToDoList = () => {
                     borderRadius: 1,
                     justifySelf: 'center',
                     width: 1250,
-                    height: 100,
+                    height: 80,
                     boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
                     fontFamily: 'tahoma',
                     display: 'grid',
-                    gridTemplate: '1fr / 1fr 10fr 1fr 1fr',
-                    fontSize: '28px',
+                    gridTemplate: '1fr 1fr / 1fr 10fr 1fr 1fr',
+                    fontSize: '24px',
                     
                   }}>
                       <CheckCircleOutline
                         sx= {{
+                          gridArea: '1/1/3/2',
                           color: 'green',
                           backgroundColor: '#D9D9D9',
                           borderRadius: '100%',
@@ -180,12 +184,12 @@ const ToDoList = () => {
                           borderRadius: '100%',
                           fontSize: '60px',
                           justifySelf: 'center',
-                          gridArea: '1 / 3 / 2 / 4',
+                          gridArea: '1 / 3 / 3 / 4',
                         }}></EditOutlined>
 
                         <HighlightOff
                           sx= {{
-                            gridArea: '1 / 4 / 2 / 5',
+                            gridArea: '1 / 4 / 3 / 5',
                             color: 'red',
                             backgroundColor: '#D9D9D9',
                             borderRadius: '100%',
