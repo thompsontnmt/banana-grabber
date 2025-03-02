@@ -1,28 +1,16 @@
 {
-  "name": "to-do-list",
-  "version": "0.1.0",
+  "name": "banana-grabber",
   "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "concurrently \"cd frontend && yarn dev\" \"cd backend && yarn dev\"",
+    "build": "yarn build --cwd frontend",
+    "start": "yarn start --cwd frontend"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^6.4.5",
-    "@mui/material": "^6.1.6",
-    "next": "15.0.2",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.2",
-    "typescript": "^5"
+    "concurrently": "^8.0.1"
   }
 }
