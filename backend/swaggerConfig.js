@@ -1,22 +1,11 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import path from "path";
+import swaggerDocs from "./docs/swaggerDocs.js";
 
 const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "To-Do List API",
-      version: "1.0.0",
-      description: "API documentation for the To-Do List application",
-    },
-    servers: [
-      {
-        url: "http://localhost:5001", // Update the port if changed
-        description: "Local server",
-      },
-    ],
-  },
-  apis: ["./server.js"], // Specify files where API routes are documented
+  definition: swaggerDocs,
+  apis: [path.join(path.resolve(), "routes", "tasks.js")],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
