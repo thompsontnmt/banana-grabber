@@ -2,8 +2,12 @@
 import React from 'react';
 import { Box, Button, Card, Stack, ListItem, Typography } from '@mui/material';
 import { CheckCircleOutline, HighlightOff, EditOutlined } from '@mui/icons-material';
+import { ListItemComponent } from './components/ListItem';
 
 const ToDoList = () => {
+
+const listItems = ["itemOne", "itemTwo", "itemThree"]
+
   return (
     <Box
       sx={{
@@ -11,7 +15,7 @@ const ToDoList = () => {
         gridTemplate: '1fr 4fr / 1fr',
         gridAutoFlow: 'column', 
         height: '100vh',
-        overflow: 'hidden',
+        overflow: 'hidden', 
 
       }}
     >
@@ -21,13 +25,13 @@ const ToDoList = () => {
           justifySelf: 'start',
           alignSelf: 'center',
           height: 70,
-          width: 250,
+          width: 300,
           bgcolor: 'blue',
           color: 'white',
           borderRadius: 2,
           fontFamily: 'tahoma',
           fontSize: 34,
-          marginLeft: 3,
+          marginLeft: 4,
           textTransform: 'none',
         
         }}> +Add To Do
@@ -35,8 +39,8 @@ const ToDoList = () => {
 
       <Card
         sx={{
-          width: 1000,
-          height: 500,
+          width: 1350,
+          height: 550,
           bgcolor: '#D9D9D9',
           borderRadius: 2,
           justifySelf: 'center',
@@ -51,74 +55,12 @@ const ToDoList = () => {
               alignItems: "center",
               marginTop: 5,
               
-
             }}>
-                <ListItem
-                  sx = {{
-                    backgroundColor: 'white',
-                    color: 'black',
-                    borderRadius: 1,
-                    justifySelf: 'center',
-                    width: 900,
-                    height: 60,
-                    boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
-                    fontFamily: 'tahoma',
-                    display: 'grid',
-                    gridTemplate: '1fr / 1fr 3fr 1fr 1fr',
-                    
-                  }}>
-                      <CheckCircleOutline
-                        sx= {{
-                          color: 'green',
-                          backgroundColor: '#D9D9D9',
-                          borderRadius: '100%',
-                          height: '50',
-                        }}></CheckCircleOutline>
 
-                      This is task #1
 
-                      <EditOutlined
-                        sx= {{
-                          color: 'green',
-                          backgroundColor: '#D9D9D9',
-                          borderRadius: '100%',
-                          height: '50',
-                        }}></EditOutlined>
-
-                        <HighlightOff
-                          sx= {{
-                            color: 'green',
-                            backgroundColor: '#D9D9D9',
-                            borderRadius: '100%',
-                            height: '50',
-                        }}></HighlightOff> 
-
-                </ListItem>
-
-                <ListItem
-                    sx = {{
-                      backgroundColor: 'white',
-                      color: 'black',
-                      borderRadius: 1,
-                      justifySelf: 'center',
-                      width: 900,
-                      height: 60,
-                      boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
-                      fontFamily: 'tahoma',
-                  }}
-                 >This is task #2</ListItem>
-
-                <ListItem
-                  sx = {{
-                    backgroundColor: 'white',
-                    color: 'black',
-                    borderRadius: 1,
-                    justifySelf: 'center',
-                    width: 900,
-                    height: 60,
-                    boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
-                    fontFamily: 'tahoma',
-                  }}>This is task #3</ListItem>
+                <ListItemComponent listItems = {listItems} />
+               
+              
           </Stack>
 
         </Card>
