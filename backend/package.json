@@ -6,7 +6,9 @@
   "repository": "https://github.com/thompsontnmt/banana-grabber.git",
   "license": "MIT",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build": "echo 'No build step required for backend'",
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

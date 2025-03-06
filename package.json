@@ -7,10 +7,13 @@
   ],
   "scripts": {
     "dev": "concurrently \"cd frontend && yarn dev\" \"cd backend && yarn dev\"",
-    "build": "yarn build --cwd frontend",
-    "start": "yarn start --cwd frontend"
+    "build": "concurrently \"yarn workspace frontend build\" \"yarn workspace backend build\"",
+    "start": "concurrently \"yarn workspace frontend start\" \"yarn workspace backend start\""
   },
   "dependencies": {
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "eslint": "^9.21.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.37.4"
   }
 }
