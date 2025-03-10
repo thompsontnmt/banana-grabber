@@ -1,14 +1,14 @@
-import { Modal, Box } from "@mui/material";
-import { useState } from "react";
+import { Modal, Box } from '@mui/material';
+import { useState } from 'react';
 
 export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (task.trim() !== "") {
+    if (task.trim() !== '') {
       handleAddTask(task);
-      setTask(""); // Clear input after submission
+      setTask(''); // Clear input after submission
     }
   };
   return (
@@ -28,7 +28,7 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
             type="text"
             value={task}
             onChange={(e) => setTask(e.target.value)}
-          />{" "}
+          />
           <div>
             <button
               type="button"
