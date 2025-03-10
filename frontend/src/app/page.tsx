@@ -1,73 +1,94 @@
+"use client";
+import React, { useState } from "react";
+import { Box, Button, Card, Stack } from "@mui/material";
+import { ListItemComponent } from "./components/ListItem";
+import { Form } from "./components/Form";
 
-import React from 'react';
-import { Box, Button, Card, Stack, ListItem, Typography } from '@mui/material';
-import { CheckCircleOutline, HighlightOff, EditOutlined } from '@mui/icons-material';
-import { ListItemComponent } from './components/ListItem';
+export interface ListItem {
+  id: number;
+  description: string;
+}
 
 const ToDoList = () => {
+  const listData = [];
 
-const listItems = ["itemOne", "itemTwo", "itemThree"]
+  const [listItems, setListItems] = useState<ListItem[]>(listData);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleToggleForm = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleAddTask = (task: string) => {
+    setListItems([
+      ...listItems,
+      { id: listItems.length + 1, description: task },
+    ]);
+    handleToggleForm(); // Close modal after adding task
+  };
 
   return (
     <Box
       sx={{
-        display: 'grid',
-        gridTemplate: '1fr 4fr / 1fr',
-        gridAutoFlow: 'column', 
-        height: '100vh',
-        overflow: 'hidden', 
-
+        display: "grid",
+        gridTemplate: "1fr 4fr / 1fr",
+        gridAutoFlow: "column",
+        height: "100vh",
+        overflow: "hidden",
       }}
     >
-      <Button 
+      <Button
         sx={{
-          gridArea: '1 / 1 / 2 / 2',
-          justifySelf: 'start',
-          alignSelf: 'center',
+          gridArea: "1 / 1 / 2 / 2",
+          justifySelf: "start",
+          alignSelf: "center",
           height: 70,
           width: 300,
-          bgcolor: 'blue',
-          color: 'white',
+          bgcolor: "blue",
+          color: "white",
           borderRadius: 2,
-          fontFamily: 'tahoma',
+          fontFamily: "tahoma",
           fontSize: 34,
           marginLeft: 4,
-          textTransform: 'none',
-        
-        }}> +Add To Do
+          textTransform: "none",
+        }}
+        onClick={() => handleToggleForm()}
+      >
+        {" "}
+        +Add To Do
       </Button>
 
       <Card
         sx={{
           width: 1350,
           height: 550,
-          bgcolor: '#D9D9D9',
+          bgcolor: "#D9D9D9",
           borderRadius: 2,
-          justifySelf: 'center',
-        }} 
+          justifySelf: "center",
+        }}
+      >
+        <Stack
+          gap={2}
+          sx={{
+            direction: "column",
+            justifySelf: "center",
+            justifyContent: "space-around",
+            alignItems: "center",
+            marginTop: 5,
+          }}
         >
-
-          <Stack gap={2} 
-            sx = {{
-              direction: 'column',
-              justifySelf: 'center',
-              justifyContent: "space-around",
-              alignItems: "center",
-              marginTop: 5,
-              
-            }}>
-
-
-                <ListItemComponent listItems = {listItems} />
-               
-              
-          </Stack>
-
-        </Card>
-
+          <ListItemComponent listItems={listItems} />
+          {isOpen ? (
+            <Form
+              handleToggleForm={handleToggleForm}
+              handleAddTask={handleAddTask}
+              isOpen={isOpen}
+            />
+          ) : null}
+        </Stack>
+      </Card>
     </Box>
-
   );
-}
+};
 
 export default ToDoList;
