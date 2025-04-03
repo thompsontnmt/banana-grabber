@@ -1,9 +1,11 @@
 import React from 'react';
-import { IconButton, ListItem } from '@mui/material';
+import { Checkbox, IconButton, ListItem } from '@mui/material';
 import {
+
   CheckCircleOutline,
   HighlightOff,
   EditOutlined,
+  CircleOutlined,
 } from '@mui/icons-material';
 import { ListItem as ListItemType } from '../page';
 
@@ -34,16 +36,30 @@ export const ListItemComponent = ({ listItems, handleDeleteTask }: Props) => {
             fontSize: '24px',
           }}
         >
-          <CheckCircleOutline
-            sx={{
-              gridArea: '1/1/3/2',
-              color: 'green',
-              backgroundColor: '#D9D9D9',
-              borderRadius: '100%',
-              fontSize: '60px',
-              justifySelf: 'center',
-            }}
-          ></CheckCircleOutline>
+          <Checkbox
+            
+            icon={<CircleOutlined
+              sx={{
+                gridArea: '1/1/3/2',
+                color: 'green',
+                backgroundColor: '#D9D9D9',
+                borderRadius: '100%',
+                fontSize: '60px',
+                justifySelf: 'center',
+              }}
+               />} 
+            checkedIcon={<CheckCircleOutline
+              sx={{
+                gridArea: '1/1/3/2',
+                color: 'green',
+                backgroundColor: '#D9D9D9',
+                borderRadius: '100%',
+                fontSize: '60px',
+                justifySelf: 'center',
+              }}
+              />}
+           />
+        
 
           {item.description}
 
