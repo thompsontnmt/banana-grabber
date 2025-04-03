@@ -34,9 +34,7 @@ const ToDoList = () => {
   };
 
   const handleCompleteTask = (id: number) => {
-    setListItems(listItems.map(listItem => listItem.id === id ? {...listItem, completed: false } : listItem 
-    )
-  ) 
+    setCompleted(!completed);
   }
 
   return (
