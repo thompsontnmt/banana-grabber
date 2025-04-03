@@ -7,7 +7,7 @@ import { Form } from './components/Form';
 export interface ListItem {
   id: number;
   description: string;
-  completed: false;
+  isComplete: boolean;
 }
 
 const ToDoList = () => {
@@ -15,7 +15,7 @@ const ToDoList = () => {
 
   const [listItems, setListItems] = useState<ListItem[]>(listData);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [completed, setCompleted] = useState<boolean>(false);
+  const [isComplete, setIsComplete] = useState<boolean>(false);
 
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
@@ -24,7 +24,7 @@ const ToDoList = () => {
   const handleAddTask = (task: string) => {
     setListItems([
       ...listItems,
-      { id: listItems.length + 1, description: task, completed: false},
+      { id: listItems.length + 1, description: task, isComplete: false},
     ]);
     handleToggleForm(); // Close modal after adding task
   };
@@ -33,9 +33,9 @@ const ToDoList = () => {
     setListItems(listItems.filter(listItem => listItem.id !== id));
   };
 
-  const handleCompleteTask = (id: number) => {
-    setCompleted(!completed);
-  }
+  const handleTaskCompletion = () => {
+    setIsComplete(!isComplete);
+  };
 
   return (
     <Box
@@ -86,7 +86,7 @@ const ToDoList = () => {
             marginTop: 5,
           }}
         >
-          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleCompleteTask={handleCompleteTask}/>
+          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleTaskCompletion={handleTaskCompletion}/>
           {isOpen ? (
             <Form
               handleToggleForm={handleToggleForm}

@@ -10,12 +10,13 @@ import { ListItem as ListItemType } from '../page';
 
 interface Props {
   listItems: ListItemType[];
+  isComplete: boolean;
   handleDeleteTask: (id: number) => void;
-  handleCompleteTask: (id: number) => void;
+  handleTaskCompletion: (id: number) => void;
 
 }
 
-export const ListItemComponent = ({ listItems, handleDeleteTask, handleCompleteTask }: Props) => {
+export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion }: Props) => {
   return (
   
     <>
@@ -38,7 +39,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleCompleteT
         >
 
           <Checkbox
-            onChange={() => handleCompleteTask}
+            onClick={() => handleTaskCompletion(item.id)}
             icon={<CircleOutlined
               sx={{
                 gridArea: '1/1/3/2',
