@@ -27,6 +27,10 @@ const ToDoList = () => {
     handleToggleForm(); // Close modal after adding task
   };
 
+  const handleDeleteTask = (id: number) => {
+    setListItems(listItems.filter(listItem => listItem.id !== id));
+  };
+
   return (
     <Box
       sx={{
@@ -76,7 +80,7 @@ const ToDoList = () => {
             marginTop: 5,
           }}
         >
-          <ListItemComponent listItems={listItems} />
+          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask}/>
           {isOpen ? (
             <Form
               handleToggleForm={handleToggleForm}

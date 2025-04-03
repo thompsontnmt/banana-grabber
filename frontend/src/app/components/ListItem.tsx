@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem } from '@mui/material';
+import { IconButton, ListItem } from '@mui/material';
 import {
   CheckCircleOutline,
   HighlightOff,
@@ -9,10 +9,13 @@ import { ListItem as ListItemType } from '../page';
 
 interface Props {
   listItems: ListItemType[];
+  handleDeleteTask: (id: number) => void;
+
 }
 
-export const ListItemComponent = ({ listItems }: Props) => {
+export const ListItemComponent = ({ listItems, handleDeleteTask }: Props) => {
   return (
+  
     <>
       {listItems.map((item) => (
         <ListItem
@@ -53,7 +56,9 @@ export const ListItemComponent = ({ listItems }: Props) => {
               gridArea: '1 / 3 / 3 / 4',
             }}
           ></EditOutlined>
-
+          
+          <IconButton
+            onClick={() => handleDeleteTask(item.id)}>
           <HighlightOff
             sx={{
               gridArea: '1 / 4 / 3 / 5',
@@ -63,7 +68,8 @@ export const ListItemComponent = ({ listItems }: Props) => {
               fontSize: '60px',
               justifySelf: 'center',
             }}
-          ></HighlightOff>
+            ></HighlightOff>
+            </IconButton>
         </ListItem>
       ))}
     </>
