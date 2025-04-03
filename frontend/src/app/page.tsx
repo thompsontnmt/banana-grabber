@@ -7,6 +7,7 @@ import { Form } from './components/Form';
 export interface ListItem {
   id: number;
   description: string;
+  completed: false;
 }
 
 const ToDoList = () => {
@@ -14,6 +15,7 @@ const ToDoList = () => {
 
   const [listItems, setListItems] = useState<ListItem[]>(listData);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [completed, setCompleted] = useState<boolean>(false);
 
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
@@ -22,7 +24,7 @@ const ToDoList = () => {
   const handleAddTask = (task: string) => {
     setListItems([
       ...listItems,
-      { id: listItems.length + 1, description: task },
+      { id: listItems.length + 1, description: task, completed: false},
     ]);
     handleToggleForm(); // Close modal after adding task
   };
@@ -30,6 +32,12 @@ const ToDoList = () => {
   const handleDeleteTask = (id: number) => {
     setListItems(listItems.filter(listItem => listItem.id !== id));
   };
+
+  const handleCompleteTask = (id: number) => {
+    setListItems(listItems.map(listItem => listItem.id === id ? {...listItem, completed: false } : listItem 
+    )
+  ) 
+  }
 
   return (
     <Box
@@ -80,7 +88,7 @@ const ToDoList = () => {
             marginTop: 5,
           }}
         >
-          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask}/>
+          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleCompleteTask={handleCompleteTask}/>
           {isOpen ? (
             <Form
               handleToggleForm={handleToggleForm}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Checkbox, IconButton, ListItem } from '@mui/material';
 import {
-
   CheckCircleOutline,
   HighlightOff,
   EditOutlined,
@@ -12,10 +11,11 @@ import { ListItem as ListItemType } from '../page';
 interface Props {
   listItems: ListItemType[];
   handleDeleteTask: (id: number) => void;
+  handleCompleteTask: (id: number) => void;
 
 }
 
-export const ListItemComponent = ({ listItems, handleDeleteTask }: Props) => {
+export const ListItemComponent = ({ listItems, handleDeleteTask, handleCompleteTask }: Props) => {
   return (
   
     <>
@@ -36,8 +36,9 @@ export const ListItemComponent = ({ listItems, handleDeleteTask }: Props) => {
             fontSize: '24px',
           }}
         >
+
           <Checkbox
-            
+            onChange={() => handleCompleteTask}
             icon={<CircleOutlined
               sx={{
                 gridArea: '1/1/3/2',
