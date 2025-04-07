@@ -7,6 +7,7 @@ import { Form } from './components/Form';
 export interface ListItem {
   id: number;
   description: string;
+  isComplete: boolean;
 }
 
 const ToDoList = () => {
@@ -14,6 +15,7 @@ const ToDoList = () => {
 
   const [listItems, setListItems] = useState<ListItem[]>(listData);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isComplete, setIsComplete] = useState<boolean>(false);
 
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
@@ -22,13 +24,17 @@ const ToDoList = () => {
   const handleAddTask = (task: string) => {
     setListItems([
       ...listItems,
-      { id: listItems.length + 1, description: task },
+      { id: listItems.length + 1, description: task, isComplete: false},
     ]);
     handleToggleForm(); // Close modal after adding task
   };
 
   const handleDeleteTask = (id: number) => {
     setListItems(listItems.filter(listItem => listItem.id !== id));
+  };
+
+  const handleTaskCompletion = () => {
+    setIsComplete(!isComplete);
   };
 
   return (
@@ -80,7 +86,7 @@ const ToDoList = () => {
             marginTop: 5,
           }}
         >
-          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask}/>
+          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleTaskCompletion={handleTaskCompletion} isComplete={isComplete}/>
           {isOpen ? (
             <Form
               handleToggleForm={handleToggleForm}
