@@ -16,7 +16,7 @@ interface Props {
 
 }
 
-export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion }: Props) => {
+export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion, isComplete}: Props) => {
   return (
   
     <>
@@ -35,6 +35,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
             display: 'grid',
             gridTemplate: '1fr 1fr / 1fr 10fr 1fr 1fr',
             fontSize: '24px',
+            textDecoration: isComplete ? 'line-through' : 'none',
           }}
         >
 
