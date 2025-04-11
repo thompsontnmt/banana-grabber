@@ -4,6 +4,7 @@ import { useState } from 'react';
 export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
   const [task, setTask] = useState('');
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (task.trim() !== '') {

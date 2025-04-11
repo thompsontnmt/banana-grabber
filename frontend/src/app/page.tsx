@@ -1,21 +1,33 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, Card, Stack } from '@mui/material';
 import { ListItemComponent } from './components/ListItem';
 import { Form } from './components/Form';
 
 export interface ListItem {
   id: number;
-  description: string;
+  description: string
   isComplete: boolean;
 }
 
 const ToDoList = () => {
   const listData = [];
+  
+  const [isOpen, setIsOpen] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const [listItems, setListItems] = useState([]) 
+  const [newItem, setNewItem] = useState('');
 
-  const [listItems, setListItems] = useState<ListItem[]>(listData);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isComplete, setIsComplete] = useState<boolean>(false);
+  useEffect(() => {
+    const saved = localStorage.getItem('listItems');
+    if (saved) {
+      setListItems(JSON.parse(saved));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('listItems', JSON.stringify(listItems));
+  }, [listItems])
 
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
