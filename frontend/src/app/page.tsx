@@ -52,7 +52,7 @@ const ToDoList = () => {
           gridArea: '1 / 1 / 2 / 2',
           justifySelf: 'start',
           alignSelf: 'center',
-          height: 70,
+          height: 100,
           width: 300,
           bgcolor: 'blue',
           color: 'white',

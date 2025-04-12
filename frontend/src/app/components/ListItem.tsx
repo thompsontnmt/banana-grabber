@@ -29,7 +29,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
             borderRadius: 1,
             justifySelf: 'center',
             width: 1250,
-            height: 'auto',
+            height: 100,
             boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
             fontFamily: 'tahoma',
             display: 'grid',
