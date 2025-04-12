@@ -29,12 +29,11 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
             borderRadius: 1,
             justifySelf: 'center',
             width: 1250,
-            height: 80,
+            height: 'auto',
             boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
             fontFamily: 'tahoma',
             display: 'grid',
-            gridTemplate: '1fr 1fr / 1fr 10fr 1fr 1fr',
-            fontSize: '24px',
+            gridTemplate: '1fr / 1fr 10fr 1fr 1fr',
             textDecoration: isComplete ? 'line-through' : 'none',
           }}
         >
@@ -47,8 +46,9 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
                 color: 'green',
                 backgroundColor: '#D9D9D9',
                 borderRadius: '100%',
-                fontSize: '60px',
-                justifySelf: 'center',
+                fontSize: '60px'
+                // placeSelf: 'center',
+                
               }}
                />} 
             checkedIcon={<CheckCircleOutline
@@ -62,9 +62,41 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
               }}
               />}
            />
-        
 
+          <div 
+            className='itemInfo'
+            style={{
+              display: 'grid',
+              gridTemplate: '1fr .25fr / 1fr'
+
+            }}          
+          >
+
+          <div 
+            className='description'
+            style={{
+              gridArea: '1/1/2/2',
+              fontSize: '28px',
+              padding: '10px',
+              paddingLeft: '20px'
+            }}
+            >
           {item.description}
+          </div>
+
+          <div 
+            className='dateAndTime'
+            style={{
+              gridArea: '2/1/3/2',
+              fontSize: '14px',
+              padding: '10px',
+              paddingLeft: '20px'
+            }}
+            >
+              Date & Time
+          </div>
+              </div>
+
 
           <EditOutlined
             sx={{
@@ -72,7 +104,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
               borderRadius: '100%',
               fontSize: '60px',
               justifySelf: 'center',
-              gridArea: '1 / 3 / 3 / 4',
+              gridArea: '1 / 3 / 2 / 4'
             }}
           ></EditOutlined>
           
