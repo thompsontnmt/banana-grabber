@@ -1,5 +1,6 @@
-import { Modal, Box } from '@mui/material';
+import { Modal, Box, Button } from '@mui/material';
 import { useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
 
 export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
   const [task, setTask] = useState('');
@@ -12,33 +13,81 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
     }
   };
   return (
-    <Modal open={isOpen} onClose={handleToggleForm}>
+    <Modal 
+      open={isOpen} 
+      onClose={handleToggleForm}
+    >
+        
       <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        p={3}
-        bgcolor="white"
-        borderRadius={2}
+        style={{
+          display: 'flex',
+          padding: '10px', 
+          backgroundColor: 'white',
+          borderRadius: '5px',
+          width: '800px',
+          height: '50px',
+          position: 'relative',
+          top: '50px',
+          left: '400px'
+          
+        }}
+
       >
         <form onSubmit={handleSubmit}>
           <input
-            placeholder="Description"
+            placeholder="Task description"
             type="text"
             value={task}
             onChange={(e) => setTask(e.target.value)}
+            style={{
+              width: 500,
+              border: 'none',
+              fontFamily: 'tahoma',
+              fontSize: 24,
+              position: 'relative',
+              left: '190px',
+              top: '10px'
+
+
+            }}
+          
           />
           <div>
-            <button
+            <Button
               type="button"
-              onClick={() => {
-                handleToggleForm();
+              onClick={() => {handleToggleForm()}}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              style={{
+                position: 'relative',
+                backgroundColor: 'red',
+                color: 'white',
+                fontSize: '14px',
+                bottom: '22px',
+                left: '100px',
+                textTransform: 'none'
               }}
-            >
+              >
               Cancel
-            </button>
-            <button type="submit">Submit</button>
+              </Button>
+
+            <Button
+              type="submit"
+              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              sx={{
+                backgroundColor: 'blue',
+                color: 'white',
+                borderRadius: '2',
+                fontSize: '14px',
+                justifySelf: 'center',
+                position: 'relative',
+                bottom: '22px',
+                right: '50px',
+                textTransform: 'none',
+              }} 
+              > +Add 
+              </Button>
           </div>
         </form>
       </Box>

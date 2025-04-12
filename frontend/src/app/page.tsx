@@ -29,7 +29,7 @@ const ToDoList = () => {
     handleToggleForm(); // Close modal after adding task
   };
 
-  const handleDeleteTask = (id: number) => {
+  const handleDeleteTask = (id: number) => { 
     setListItems(listItems.filter(listItem => listItem.id !== id));
   };
 
@@ -64,7 +64,7 @@ const ToDoList = () => {
         }}
         onClick={() => handleToggleForm()}
       >
-        +Add To Do
+        + Add To Do
       </Button>
 
       <Card
