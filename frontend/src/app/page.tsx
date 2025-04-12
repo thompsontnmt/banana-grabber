@@ -41,7 +41,7 @@ const ToDoList = () => {
     handleToggleForm(); // Close modal after adding task
   };
 
-  const handleDeleteTask = (id: number) => {
+  const handleDeleteTask = (id: number) => { 
     setListItems(listItems.filter(listItem => listItem.id !== id));
   };
 
@@ -64,7 +64,7 @@ const ToDoList = () => {
           gridArea: '1 / 1 / 2 / 2',
           justifySelf: 'start',
           alignSelf: 'center',
-          height: 70,
+          height: 100,
           width: 300,
           bgcolor: 'blue',
           color: 'white',
@@ -76,7 +76,7 @@ const ToDoList = () => {
         }}
         onClick={() => handleToggleForm()}
       >
-        +Add To Do
+        + Add To Do
       </Button>
 
       <Card
