@@ -10,7 +10,12 @@ router.get("/", (req, res) => {
 
 // Create a new task
 router.post("/", (req, res) => {
-  const newTask = { id: Date.now(), text: req.body.text, completed: false };
+  const newTask = {
+    id: Date.now(),
+    description: req.body.description,
+    isCompleted: false,
+    createdOn: new Date().toISOString(),
+  };
   tasks.push(newTask);
   res.status(201).json(newTask);
 });
@@ -20,7 +25,7 @@ router.patch("/:id", (req, res) => {
   const task = tasks.find((t) => t.id == req.params.id);
   if (!task) return res.status(404).json({ message: "Task not found" });
 
-  task.text = req.body.text || task.text;
+  task.description = req.body.description || task.description;
   res.json(task);
 });
 
@@ -29,7 +34,7 @@ router.put("/:id/complete", (req, res) => {
   const task = tasks.find((t) => t.id == req.params.id);
   if (!task) return res.status(404).json({ message: "Task not found" });
 
-  task.completed = true;
+  task.isCompleted = true;
   res.json(task);
 });
 
