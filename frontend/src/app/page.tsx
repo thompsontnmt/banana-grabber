@@ -32,7 +32,7 @@ const ToDoList = () => {
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
   };
-
+  
   const handleAddTask = async (description: string) => {
     const response  =  await fetch("http://localhost:5001/tasks",
     {method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({description: description })} )
@@ -41,6 +41,7 @@ const ToDoList = () => {
     setListItems((previous) => [...previous, newTask] )
     handleToggleForm();
   };
+
 
   const handleDeleteTask = (id: number) => { 
     setListItems(listItems.filter(listItem => listItem.id !== id));
