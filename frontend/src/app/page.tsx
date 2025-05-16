@@ -33,12 +33,13 @@ const ToDoList = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleAddTask = (task: string) => {
-    setListItems([
-      ...listItems,
-      { id: listItems.length + 1, description: task, isComplete: false},
-    ]);
-    handleToggleForm(); // Close modal after adding task
+  const handleAddTask = async (description: string) => {
+    const response  =  await fetch("http://localhost:5001/tasks",
+    {method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({description: description })} )
+    const newTask = await response.json();
+    console.log(newTask);
+    setListItems((previous) => [...previous, newTask] )
+    handleToggleForm();
   };
 
   const handleDeleteTask = (id: number) => { 
