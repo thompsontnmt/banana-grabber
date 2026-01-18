@@ -1,48 +1,107 @@
-import { Modal, Box } from '@mui/material';
+'use client';
+
+import { Popover } from '@mui/material';
 import { useState } from 'react';
 
-export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
+export default function Form({
+  anchorEl,
+  handleToggleForm,
+  handleAddTask,
+}: {
+  anchorEl: HTMLElement | null;
+  handleToggleForm: () => void;
+  handleAddTask: (task: string) => void;
+}) {
   const [task, setTask] = useState('');
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (task.trim() !== '') {
-      handleAddTask(task);
-      setTask(''); // Clear input after submission
-    }
+    handleAddTask(task);
+    setTask('');
+    handleToggleForm();
   };
+
   return (
-    <Modal open={isOpen} onClose={handleToggleForm}>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        p={3}
-        bgcolor="white"
-        borderRadius={2}
-      >
-        <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Description"
-            type="text"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-          />
-          <div>
-            <button
-              type="button"
-              onClick={() => {
-                handleToggleForm();
-              }}
-            >
-              Cancel
-            </button>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </Box>
-    </Modal>
+    <Popover
+      open={Boolean(anchorEl)}
+      anchorEl={anchorEl}
+      onClose={handleToggleForm}
+      anchorOrigin={{ vertical: "center", horizontal: "right" }}
+      transformOrigin={{ vertical: "center", horizontal: "left" }}
+      PaperProps={{
+        elevation: 0,
+        sx: { 
+          bgcolor: 'white',
+          overflow: 'hidden',
+          transition: 'width 200mx ease',
+          width: anchorEl ? 1000 : 0,
+          height: 68,
+          padding: 0,   
+          border: '1px solid lightgray',
+          borderRadius: "0 8px 8px 0",
+          ml: 0,
+          alignItems: 'center',
+
+
+
+         },
+      }}
+    >
+      <form onSubmit={handleSubmit}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 8,
+          width: '100%',
+          height: '100%',
+          padding: 20,
+          borderRadius: '0 8px 8px 0',
+          boxSizing: 'border-box',
+        }}>
+
+        <input
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          placeholder='Your next task'
+            style={{
+              height: 40,
+              lineHeight: '40px',
+              width: 700,
+              fontFamily: 'tahoma',
+              fontSize: 24,
+              padding: '8px',
+              border: 'none',
+              borderRadius: '8px',
+  }}
+        />
+        <button 
+          type="submit"
+          style={{
+            height: 40,
+            width: 100,
+            fontFamily: 'tahoma',
+            fontSize: 20,
+            backgroundColor: 'blue',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '8px'
+          }}>Submit</button>
+        <button 
+          type="button" 
+          onClick={() => { handleToggleForm(); }} 
+          style={{
+            height: 40,
+            width: 100,
+            fontFamily: 'tahoma',
+            fontSize: 20,
+            border: 'none',
+            borderRadius: '5px',
+            padding: '8px'
+          }}
+          > Cancel </button>
+      </form>
+    </Popover>
   );
-};
+}
