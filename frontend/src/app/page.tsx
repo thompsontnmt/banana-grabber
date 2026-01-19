@@ -4,7 +4,7 @@ import { Box, Button, Card, Stack } from '@mui/material';
 import { ListItemComponent } from './components/ListItem';
 import Form from './components/Form';
 
-export interface ListItem {
+export interface TodoItem {
   id: number;
   description: string
   isComplete: boolean;
@@ -15,8 +15,9 @@ const ToDoList = () => {
   
   const [anchorEl, setAnchorEl] = useState(null);
   const [isComplete, setIsComplete] = useState(false);
-  const [listItems, setListItems] = useState([]) 
+  const [listItems, setListItems] = useState<TodoItem[]>([]);
   const [newItem, setNewItem] = useState('');
+  const [editingTask, setEditingTask] = useState<TodoItem | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem('listItems');
@@ -52,6 +53,23 @@ const handleCloseForm = () => {
   const handleTaskCompletion = () => {
     setIsComplete(!isComplete);
   };
+
+  const handleEditTask = (
+    event:React.MouseEvent<HTMLElement>,
+    task: TodoItem
+  ) => {
+    setEditingTask(task);
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleUpdateTask = (id: number, description: string) => {
+    setListItems(items => 
+      items.map(item => 
+        item.id === id ? { ...item, description } : item
+      )
+    );
+    setEditingTask(null);
+  }
 
   return (
     <Box
@@ -108,11 +126,18 @@ const handleCloseForm = () => {
             marginTop: 5,
           }}
         >
-          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleTaskCompletion={handleTaskCompletion} isComplete={isComplete}/>
+          <ListItemComponent 
+            listItems={listItems} 
+            handleDeleteTask={handleDeleteTask} 
+            handleTaskCompletion={handleTaskCompletion} 
+            handleEditTask={handleEditTask}
+            isComplete={isComplete}
+            />
            <Form
               anchorEl={anchorEl}
               onClose={handleCloseForm}
               handleAddTask={handleAddTask}
+              editingTask={editingTask}
             />
         </Stack>
       </Card>

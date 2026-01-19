@@ -1,22 +1,26 @@
 import React from 'react';
 import { Checkbox, IconButton, ListItem } from '@mui/material';
-import {
-  CheckCircleOutline,
-  HighlightOff,
-  EditOutlined,
-  CircleOutlined,
-} from '@mui/icons-material';
-import { ListItem as ListItemType } from '../page';
+import { CheckCircleOutline, HighlightOff, EditOutlined, CircleOutlined,} from '@mui/icons-material';
+import { TodoItem } from '../page';
 
 interface Props {
-  listItems: ListItemType[];
-  isComplete: boolean;
+  listItems: TodoItem[];
   handleDeleteTask: (id: number) => void;
   handleTaskCompletion: (id: number) => void;
-
+  handleEditTask: (
+    event: React.MouseEvent<HTMLElement>,
+    task: TodoItem
+  ) => void;
+  isComplete: boolean;
 }
 
-export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion, isComplete}: Props) => {
+export const ListItemComponent = ({ 
+  listItems, 
+  handleDeleteTask, 
+  handleTaskCompletion, 
+  isComplete,
+  handleEditTask
+}: Props) => {
   return (
   
     <>
@@ -65,7 +69,9 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
         
 
           {item.description}
-
+          <IconButton
+              onClick={(e) => handleEditTask(e, item)}
+          >
           <EditOutlined
             sx={{
               color: 'green',
@@ -75,7 +81,8 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
               justifySelf: 'center',
               gridArea: '1 / 3 / 2 / 4',
             }}
-          ></EditOutlined>
+            ></EditOutlined>
+            </IconButton>
           
           <IconButton
             onClick={() => handleDeleteTask(item.id)}>

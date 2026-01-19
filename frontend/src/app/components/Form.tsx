@@ -1,21 +1,40 @@
 'use client';
 
 import { Popover } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Form({
   anchorEl,
   onClose,
   handleAddTask,
+  handleUpdateTask,
+  editingTask
 }: {
   anchorEl: HTMLElement | null;
   onClose: () => void;
   handleAddTask: (task: string) => void;
+  editingTask?: { id: number; description: string;} | null;
+  handleUpdateTask: (id: number, description: string) => void;
 }) {
+
   const [task, setTask] = useState('');
+
+  useEffect(() => {
+    if (editingTask) {
+      setTask(editingTask.description);
+    } else {
+      setTask('')
+    }
+  }, [editingTask]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if(!task.trim()) return;
+
+    if (editingTask) {
+      handleUpdateTask(editingTask.id, task);
+    } else {
     handleAddTask(task);
     setTask('');
     onClose();
@@ -108,4 +127,5 @@ export default function Form({
       </form>
     </Popover>
   );
+}
 }
