@@ -5,11 +5,11 @@ import { useState } from 'react';
 
 export default function Form({
   anchorEl,
-  handleToggleForm,
+  onClose,
   handleAddTask,
 }: {
   anchorEl: HTMLElement | null;
-  handleToggleForm: () => void;
+  onClose: () => void;
   handleAddTask: (task: string) => void;
 }) {
   const [task, setTask] = useState('');
@@ -18,14 +18,14 @@ export default function Form({
     e.preventDefault();
     handleAddTask(task);
     setTask('');
-    handleToggleForm();
+    onClose();
   };
 
   return (
     <Popover
       open={Boolean(anchorEl)}
       anchorEl={anchorEl}
-      onClose={handleToggleForm}
+      onClose={onClose}
       anchorOrigin={{ vertical: "center", horizontal: "right" }}
       transformOrigin={{ vertical: "center", horizontal: "left" }}
       PaperProps={{
@@ -69,10 +69,11 @@ export default function Form({
               lineHeight: '40px',
               width: 700,
               fontFamily: 'tahoma',
-              fontSize: 24,
-              padding: '8px',
+              fontSize: 20,
+              padding: '2px 2px 2px 20px',
               border: 'none',
               borderRadius: '8px',
+              outline: 'none'
   }}
         />
         <button 
@@ -87,10 +88,12 @@ export default function Form({
             border: 'none',
             borderRadius: '5px',
             padding: '8px'
-          }}>Submit</button>
+          }}>Submit
+        </button>
+
         <button 
           type="button" 
-          onClick={() => { handleToggleForm(); }} 
+          onClick={onClose}
           style={{
             height: 40,
             width: 100,
@@ -100,7 +103,8 @@ export default function Form({
             borderRadius: '5px',
             padding: '8px'
           }}
-          > Cancel </button>
+          > Cancel 
+        </button>
       </form>
     </Popover>
   );

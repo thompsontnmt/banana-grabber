@@ -29,17 +29,20 @@ const ToDoList = () => {
     localStorage.setItem('listItems', JSON.stringify(listItems));
   }, [listItems])
 
-  const handleToggleForm = (event) => {
-    setAnchorEl((prev) => (prev ? null : event.currentTarget));
+  const handleOpenForm = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+};
 
-  };
+const handleCloseForm = () => {
+  setAnchorEl(null);
+}
 
   const handleAddTask = (task: string) => {
     setListItems([
       ...listItems,
       { id: listItems.length + 1, description: task, isComplete: false},
     ]);
-    handleToggleForm({currentTarget: anchorEl}); // Close modal after adding task
+    handleCloseForm(); // Close modal after adding task
   };  
 
   const handleDeleteTask = (id: number) => {
@@ -76,11 +79,12 @@ const ToDoList = () => {
           px: 2,
           py: 0,
           minHeight: 70,
-          borderRadius: '8px 0 0 8px',
+          borderRadius: anchorEl ? '8px 0 0 8px' : '8px',
           display: 'flex',
           alignItems: 'center',
         }}
-        onClick={handleToggleForm}
+        onClick={handleOpenForm}
+        disabled={Boolean(anchorEl)}
       >
         +Add To Do
       </Button>
@@ -90,7 +94,7 @@ const ToDoList = () => {
           width: 1350,
           height: 550,
           bgcolor: '#D9D9D9',
-          borderRadius: "8px 0 0 8px",
+          borderRadius: "8px",
           justifySelf: 'center',
         }}
       >
@@ -107,7 +111,7 @@ const ToDoList = () => {
           <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleTaskCompletion={handleTaskCompletion} isComplete={isComplete}/>
            <Form
               anchorEl={anchorEl}
-              handleToggleForm={handleToggleForm}
+              onClose={handleCloseForm}
               handleAddTask={handleAddTask}
             />
         </Stack>
