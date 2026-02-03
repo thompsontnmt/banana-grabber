@@ -39,7 +39,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
         >
 
           <Checkbox
-            onClick={() => handleTaskCompletion(item.id)}
+            onChange={() => handleTaskCompletion(item.id)}
             icon={<CircleOutlined
               sx={{
                 gridArea: '1/1/3/2',
