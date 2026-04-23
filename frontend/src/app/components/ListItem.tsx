@@ -90,11 +90,12 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
             style={{
               gridArea: '2/1/3/2',
               fontSize: '14px',
+              color: 'gray',
               padding: '10px',
               paddingLeft: '20px'
             }}
             >
-              Date & Time
+              {item.dateTime ? new Date(item.dateTime).toLocaleString() : 'No date set'}
           </div>
               </div>
 

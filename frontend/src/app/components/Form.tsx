@@ -11,23 +11,24 @@ export const Form = ({
   editingItem, 
 }) => {
   const [task, setTask] = useState(editingItem?.description ?? '');
-
+  const [dateTime, setDateTime] = useState('');
   useEffect(() => {
     setTask(editingItem?.description ?? '');
+    setDateTime(editingItem?.dateTime ?? '');
   }, [editingItem]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (task.trim() !== '') {
-      handleAddTask(task, editingItem);
-      setTask(''); // Clear input after submission
+      handleAddTask(task, editingItem, dateTime);
+      setTask(''); 
+      setDateTime('');
     }
   };
   return (
     <Modal 
     onClose={handleToggleForm}
     open={isOpen}
-
     >
         
       <Box
@@ -37,13 +38,12 @@ export const Form = ({
           backgroundColor: 'white',
           borderRadius: '5px',
           width: '800px',
-          height: '50px',
+          height: 'auto-fit',
           position: 'relative',
           top: '50px',
           left: '400px'
           
         }}
-
       >
         <form onSubmit={handleSubmit}>
           <input
@@ -59,7 +59,21 @@ export const Form = ({
               position: 'relative',
               left: '190px',
               top: '10px'
-
+            }}
+          />
+          <input
+            placeholder="Date & Time"
+            type="datetime-local"
+            value={dateTime}
+            onChange={(e) => setDateTime(e.target.value)}
+            style={{
+              border: 'none',
+              fontFamily: 'tahoma',
+              fontSize: 18,
+              color: 'gray',
+              position: 'relative',
+              left: '190px',
+              top: '10px',
 
             }}
           

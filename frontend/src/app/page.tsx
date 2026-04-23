@@ -8,6 +8,7 @@ export interface ListItem {
   id: number;
   description: string;
   isComplete: boolean;
+  dateTime: string;
 }
 
 
@@ -17,23 +18,22 @@ const ToDoList = () => {
   const [listItems, setListItems] = useState<ListItem[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<ListItem | null>(null);
-  // const [isComplete, setIsComplete] = useState<boolean>(false);
 
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleAddTask = (task: string, editingItem: ListItem | null) => {
+  const handleAddTask = (task: string, editingItem: ListItem | null, dateTime: string) => {
     if (editingItem){
     setListItems(listItems.map(item =>
-      item.id === editingItem.id ? { ...item, description: task } : item
+      item.id === editingItem.id ? { ...item, description: task, dateTime} : item
     ));
     setEditingItem(null);
     setIsOpen(false);
   } else {
-    setListItems([
+    setListItems([ 
       ...listItems,
-      { id: nextId.current++, description: task, isComplete: false},
+      { id: nextId.current++, description: task, isComplete: false, dateTime},
     ]);
     setIsOpen(false);
   };
