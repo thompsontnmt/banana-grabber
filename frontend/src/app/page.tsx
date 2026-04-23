@@ -14,6 +14,7 @@ export interface ListItem {
 
 const ToDoList = () => {
   const nextId =useRef(1);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const [listItems, setListItems] = useState<ListItem[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -68,6 +69,8 @@ const ToDoList = () => {
       }}
     >
       <Button
+      ref={buttonRef}
+      onClick={() => handleToggleForm()}
         sx={{
           gridArea: '1 / 1 / 2 / 2',
           justifySelf: 'start',
@@ -82,7 +85,6 @@ const ToDoList = () => {
           marginLeft: 4,
           textTransform: 'none',
         }}
-        onClick={() => handleToggleForm()}
       >
         + Add To Do
       </Button>

@@ -4,11 +4,15 @@ import { ListItem } from '../page';
 import AddIcon from '@mui/icons-material/Add';
 import { open } from 'node:inspector';
 
-export const Form = ({ 
-  handleToggleForm, 
-  handleAddTask, 
-  isOpen, 
-  editingItem, 
+interface Props {
+  handleToggleForm: () => void;
+  handleAddTask: (task: string, editingItem: ListItem | null, dateTime: string) => void;
+  isOpen: boolean;
+  editingItem: ListItem | null;
+  buttonRef: React.RefObject<HTMLButtonElement>;
+}
+
+export const Form = ({ handleToggleForm, handleAddTask, isOpen, editingItem, 
 }) => {
   const [task, setTask] = useState(editingItem?.description ?? '');
   const [dateTime, setDateTime] = useState('');
@@ -35,7 +39,6 @@ export const Form = ({
         
       <Box
         style={{
-          display: 'flex',
           padding: '10px', 
           backgroundColor: 'white',
           borderRadius: '5px',
