@@ -10,6 +10,8 @@ export interface ListItem {
   isComplete: boolean;
 }
 
+const nextId =useRef(1);
+
 const ToDoList = () => {
   const listData = [];
 
@@ -24,7 +26,7 @@ const ToDoList = () => {
   const handleAddTask = (task: string) => {
     setListItems([
       ...listItems,
-      { id: listItems.length + 1, description: task, isComplete: false},
+      { id: nextId.current++, description: task, isComplete: false},
     ]);
     handleToggleForm(); // Close modal after adding task
   };
