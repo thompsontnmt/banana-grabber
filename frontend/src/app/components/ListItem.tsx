@@ -98,7 +98,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
           </div>
               </div>
 
-
+          <IconButton>
           <EditOutlined
             onClick={() => handleEditTask(item.id)}
             sx={{
@@ -108,7 +108,8 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
               justifySelf: 'center',
               gridArea: '1 / 3 / 2 / 4'
             }}
-          ></EditOutlined>
+            ></EditOutlined>
+            </IconButton>
           
           <IconButton
             onClick={() => handleDeleteTask(item.id)}>
