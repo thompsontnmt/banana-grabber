@@ -23,13 +23,21 @@ const ToDoList = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleAddTask = (task: string) => {
+  const handleAddTask = (task: string, editingItem: ListItem | null) => {
+    if (editingItem){
+    setListItems(listItems.map(item =>
+      item.id === editingItem.id ? { ...item, description: task } : item
+    ));
+    setEditingItem(null);
+    setIsOpen(false);
+  } else {
     setListItems([
       ...listItems,
       { id: nextId.current++, description: task, isComplete: false},
     ]);
-    handleToggleForm(); // Close modal after adding task
+    setIsOpen(false);
   };
+}
 
   const handleDeleteTask = (id: number) => { 
     setListItems(listItems.filter(listItem => listItem.id !== id));

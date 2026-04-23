@@ -19,7 +19,7 @@ export const Form = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (task.trim() !== '') {
-      handleAddTask(task);
+      handleAddTask(task, editingItem);
       setTask(''); // Clear input after submission
     }
   };
