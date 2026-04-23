@@ -7,12 +7,12 @@ import { open } from 'node:inspector';
 interface Props {
   handleToggleForm: () => void;
   handleAddTask: (task: string, editingItem: ListItem | null, dateTime: string) => void;
-  isOpen: boolean;
+  // isOpen: boolean;
   editingItem: ListItem | null;
   buttonRef: React.RefObject<HTMLButtonElement>;
 }
 
-export const Form = ({ handleToggleForm, handleAddTask, isOpen, editingItem, 
+export const Form = ({ handleToggleForm, handleAddTask, editingItem, buttonRef
 }) => {
   const [task, setTask] = useState(editingItem?.description ?? '');
   const [dateTime, setDateTime] = useState('');
@@ -20,6 +20,8 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen, editingItem,
     setTask(editingItem?.description ?? '');
     setDateTime(editingItem?.dateTime ?? '');
   }, [editingItem]);
+
+  const rect = buttonRef.current?.getBoundingClientRect();
 
   const handleSubmit = (e) => {
   e.preventDefault();
@@ -32,21 +34,16 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen, editingItem,
 
 
   return (
-    <Modal 
-    onClose={handleToggleForm}
-    open={isOpen}
-    >
-        
       <Box
         style={{
-          padding: '10px', 
+          position: 'absolute',
+          // top: rect ? rect.bottom + window.scrollY + 8 : 100, // 8px gap below button
+          right: rect ? rect.right + window.scrollX : 400,
+          width: 'auto-fit',
           backgroundColor: 'white',
           borderRadius: '5px',
-          width: '800px',
-          height: 'auto-fit',
-          position: 'relative',
-          top: '50px',
-          left: '400px'
+          padding: '20px',
+          boxShadow: '0px 8px 16px rgba(0,0,0,0.2)',
           
         }}
       >
@@ -123,6 +120,6 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen, editingItem,
           </div>
         </form>
       </Box>
-    </Modal>
+    
   );
 };

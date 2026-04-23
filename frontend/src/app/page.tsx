@@ -17,11 +17,13 @@ const ToDoList = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const [listItems, setListItems] = useState<ListItem[]>([]);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<ListItem | null>(null);
+  const [isAdding, setIsAdding] = useState<boolean>(false);
 
   const handleToggleForm = () => {
-    setIsOpen(!isOpen);
+    setIsAdding(!isAdding);
+    if (isAdding) setEditingItem(null);
   };
 
   const handleAddTask = (task: string, editingItem: ListItem | null, dateTime: string) => {
@@ -30,13 +32,12 @@ const ToDoList = () => {
       item.id === editingItem.id ? { ...item, description: task, dateTime} : item
     ));
     setEditingItem(null);
-    setIsOpen(false);
   } else {
     setListItems([ 
       ...listItems,
       { id: nextId.current++, description: task, isComplete: false, dateTime},
     ]);
-    setIsOpen(false);
+    setIsAdding(false);
   };
 }
 
@@ -54,7 +55,7 @@ const ToDoList = () => {
     const item = listItems.find(item => item.id === id);
     if (item) {
       setEditingItem(item);
-      setIsOpen(true);
+      // setIsOpen(true);
     }
   };
 
@@ -114,14 +115,15 @@ const ToDoList = () => {
             handleTaskCompletion={handleTaskCompletion} 
             handleEditTask={handleEditTask}
             />
-          {isOpen ? (
+          {isAdding && (
             <Form
               handleToggleForm={handleToggleForm}
               handleAddTask={handleAddTask}
-              isOpen={isOpen}
-              editingItem={editingItem}
+              // isOpen={isOpen}
+              editingItem={null}
+              buttonRef={buttonRef}
             />
-          ) : null}
+          )}
         </Stack>
       </Card>
     </Box>
