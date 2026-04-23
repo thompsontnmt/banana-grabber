@@ -10,13 +10,13 @@ import { ListItem as ListItemType } from '../page';
 
 interface Props {
   listItems: ListItemType[];
-  isComplete: boolean;
   handleDeleteTask: (id: number) => void;
   handleTaskCompletion: (id: number) => void;
+  
 
 }
 
-export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion, isComplete}: Props) => {
+export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion }: Props) => {
   return (
   
     <>
@@ -34,7 +34,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
             fontFamily: 'tahoma',
             display: 'grid',
             gridTemplate: '1fr / 1fr 10fr 1fr 1fr',
-            textDecoration: isComplete ? 'line-through' : 'none',
+            textDecoration: item.isComplete ? 'line-through' : 'none',
           }}
         >
 

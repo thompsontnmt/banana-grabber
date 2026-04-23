@@ -15,7 +15,7 @@ const ToDoList = () => {
 
   const [listItems, setListItems] = useState<ListItem[]>(listData);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isComplete, setIsComplete] = useState<boolean>(false);
+  // const [isComplete, setIsComplete] = useState<boolean>(false);
 
   const handleToggleForm = () => {
     setIsOpen(!isOpen);
@@ -33,8 +33,10 @@ const ToDoList = () => {
     setListItems(listItems.filter(listItem => listItem.id !== id));
   };
 
-  const handleTaskCompletion = () => {
-    setIsComplete(!isComplete);
+  const handleTaskCompletion = (id: number) => {
+    setListItems(listItems.map(item =>
+    item.id === id ? { ...item, isComplete: !item.isComplete } : item
+  ));
   };
 
   return (
@@ -86,7 +88,7 @@ const ToDoList = () => {
             marginTop: 5,
           }}
         >
-          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleTaskCompletion={handleTaskCompletion} isComplete={isComplete}/>
+          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleTaskCompletion={handleTaskCompletion} />
           {isOpen ? (
             <Form
               handleToggleForm={handleToggleForm}
