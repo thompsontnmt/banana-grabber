@@ -18,13 +18,15 @@ export const Form = ({
   }, [editingItem]);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (task.trim() !== '') {
-      handleAddTask(task, editingItem, dateTime);
-      setTask(''); 
-      setDateTime('');
-    }
-  };
+  e.preventDefault();
+  if (task.trim() !== '') {
+    handleAddTask(task, editingItem, dateTime);
+  }
+};
+
+
+
+
   return (
     <Modal 
     onClose={handleToggleForm}
