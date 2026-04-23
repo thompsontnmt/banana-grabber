@@ -10,13 +10,13 @@ export interface ListItem {
   isComplete: boolean;
 }
 
-const nextId =useRef(1);
 
 const ToDoList = () => {
-  const listData = [];
+  const nextId =useRef(1);
 
-  const [listItems, setListItems] = useState<ListItem[]>(listData);
+  const [listItems, setListItems] = useState<ListItem[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [editingItem, setEditingItem] = useState<ListItem | null>(null);
   // const [isComplete, setIsComplete] = useState<boolean>(false);
 
   const handleToggleForm = () => {
@@ -39,6 +39,14 @@ const ToDoList = () => {
     setListItems(listItems.map(item =>
     item.id === id ? { ...item, isComplete: !item.isComplete } : item
   ));
+  };
+
+    const handleEditTask = (id: number) => {
+    const item = listItems.find(item => item.id === id);
+    if (item) {
+      setEditingItem(item);
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -90,12 +98,18 @@ const ToDoList = () => {
             marginTop: 5,
           }}
         >
-          <ListItemComponent listItems={listItems} handleDeleteTask={handleDeleteTask} handleTaskCompletion={handleTaskCompletion} />
+          <ListItemComponent 
+            listItems={listItems} 
+            handleDeleteTask={handleDeleteTask} 
+            handleTaskCompletion={handleTaskCompletion} 
+            handleEditTask={handleEditTask}
+            />
           {isOpen ? (
             <Form
               handleToggleForm={handleToggleForm}
               handleAddTask={handleAddTask}
               isOpen={isOpen}
+              editingItem={editingItem}
             />
           ) : null}
         </Stack>

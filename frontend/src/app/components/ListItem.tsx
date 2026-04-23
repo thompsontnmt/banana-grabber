@@ -12,11 +12,12 @@ interface Props {
   listItems: ListItemType[];
   handleDeleteTask: (id: number) => void;
   handleTaskCompletion: (id: number) => void;
+  handleEditTask: (id: number) => void;
   
 
 }
 
-export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion }: Props) => {
+export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion, handleEditTask}: Props) => {
   return (
   
     <>
@@ -99,6 +100,7 @@ export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompl
 
 
           <EditOutlined
+            onClick={() => handleEditTask(item.id)}
             sx={{
               color: 'green',
               borderRadius: '100%',

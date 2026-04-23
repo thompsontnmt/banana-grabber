@@ -1,9 +1,20 @@
 import { Modal, Box, Button } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ListItem } from '../page';
 import AddIcon from '@mui/icons-material/Add';
+import { open } from 'node:inspector';
 
-export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
-  const [task, setTask] = useState('');
+export const Form = ({ 
+  handleToggleForm, 
+  handleAddTask, 
+  isOpen, 
+  editingItem, 
+}) => {
+  const [task, setTask] = useState(editingItem?.description ?? '');
+
+  useEffect(() => {
+    setTask(editingItem?.description ?? '');
+  }, [editingItem]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,8 +25,9 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
   };
   return (
     <Modal 
-      open={isOpen} 
-      onClose={handleToggleForm}
+    onClose={handleToggleForm}
+    open={isOpen}
+
     >
         
       <Box
@@ -75,6 +87,7 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
               type="submit"
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              
               sx={{
                 backgroundColor: 'blue',
                 color: 'white',
@@ -86,7 +99,7 @@ export const Form = ({ handleToggleForm, handleAddTask, isOpen }) => {
                 right: '50px',
                 textTransform: 'none',
               }} 
-              > +Add 
+              > {editingItem ? 'Save' : '+Add'} 
               </Button>
           </div>
         </form>
