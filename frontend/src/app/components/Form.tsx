@@ -9,10 +9,8 @@ interface Props {
   handleAddTask: (task: string, editingItem: ListItem | null, dateTime: string) => void;
   // isOpen: boolean;
   editingItem: ListItem | null;
-  buttonRef: React.RefObject<HTMLButtonElement>;
 }
-
-export const Form = ({ handleToggleForm, handleAddTask, editingItem, buttonRef
+export const Form = ({ handleToggleForm, handleAddTask, editingItem
 }) => {
   const [task, setTask] = useState(editingItem?.description ?? '');
   const [dateTime, setDateTime] = useState('');
@@ -21,7 +19,6 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem, buttonRef
     setDateTime(editingItem?.dateTime ?? '');
   }, [editingItem]);
 
-  const rect = buttonRef.current?.getBoundingClientRect();
 
   const handleSubmit = (e) => {
   e.preventDefault();
@@ -36,32 +33,42 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem, buttonRef
   return (
       <Box
         style={{
-          position: 'absolute',
-          // top: rect ? rect.bottom + window.scrollY + 8 : 100, // 8px gap below button
-          right: rect ? rect.right + window.scrollX : 400,
-          width: 'auto-fit',
-          backgroundColor: 'white',
-          borderRadius: '5px',
-          padding: '20px',
-          boxShadow: '0px 8px 16px rgba(0,0,0,0.2)',
-          
-        }}
-      >
-        <form onSubmit={handleSubmit}>
+            backgroundColor: 'white',
+            color: 'black',
+            borderRadius: '3px',
+            justifySelf: 'center',
+            width: 1250,
+            height: 100,    
+            boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
+            fontFamily: 'tahoma',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }} 
+          >
+
+        <form onSubmit={handleSubmit}
+            style={{
+              height: 100,
+              width: 1250,
+              display: 'grid',
+              gridTemplate: '1fr .5fr / 1fr 10fr 1fr 1fr',
+              
+          }}
+        >
           <input
             placeholder="Task description"
             type="text"
             value={task}
             onChange={(e) => setTask(e.target.value)}
             style={{
-              width: 500,
+              width: '500',
               border: 'none',
               fontFamily: 'tahoma',
-              fontSize: 24,
-              position: 'relative',
-              left: '190px',
-              top: '10px'
-            }}
+              fontSize: '28px',
+              gridArea: '1/2/2/3',
+              padding: '10px',
+              paddingLeft: '28px'
+            }}  
           />
           <input
             placeholder="Date & Time"
@@ -71,29 +78,28 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem, buttonRef
             style={{
               border: 'none',
               fontFamily: 'tahoma',
-              fontSize: 18,
+              fontSize: '14px',
               color: 'gray',
-              position: 'relative',
-              left: '190px',
-              top: '10px',
-
+              gridArea: '2/2/3/3',
+              padding: '10px',
+              width: '200px',
+              paddingLeft: '28px'
             }}
           
           />
-          <div>
             <Button
               type="button"
               onClick={() => {handleToggleForm()}}
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.2)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
               style={{
-                position: 'relative',
                 backgroundColor: 'red',
                 color: 'white',
                 fontSize: '14px',
-                bottom: '22px',
-                left: '100px',
-                textTransform: 'none'
+                textTransform: 'none',
+                gridArea: '1/4/3/5',
+                height: '40px',
+                placeSelf: 'center',
               }}
               >
               Cancel
@@ -109,15 +115,13 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem, buttonRef
                 color: 'white',
                 borderRadius: '2',
                 fontSize: '14px',
-                justifySelf: 'center',
-                position: 'relative',
-                bottom: '22px',
-                right: '50px',
+                placeSelf: 'center',
+                gridArea: '1/3/3/4',
                 textTransform: 'none',
+                height: '40px',
               }} 
               > {editingItem ? 'Save' : '+Add'} 
               </Button>
-          </div>
         </form>
       </Box>
     

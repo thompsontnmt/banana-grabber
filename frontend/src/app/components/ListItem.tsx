@@ -7,24 +7,44 @@ import {
   CircleOutlined,
 } from '@mui/icons-material';
 import { ListItem as ListItemType } from '../page';
+import { Form } from './Form';
 
 interface Props {
   listItems: ListItemType[];
+  editingItem: ListItemType| null;
   handleDeleteTask: (id: number) => void;
   handleTaskCompletion: (id: number) => void;
   handleEditTask: (id: number) => void;
-  
+  handleAddTask: (task: string, editingItem: ListItemType | null, dateTime: string) => void; 
+  handleToggleForm: () => void;
 
 }
 
-export const ListItemComponent = ({ listItems, handleDeleteTask, handleTaskCompletion, handleEditTask}: Props) => {
+export const ListItemComponent = ({ 
+  listItems,
+  editingItem,
+  handleDeleteTask,
+  handleTaskCompletion,
+  handleEditTask,
+  handleAddTask,
+  handleToggleForm,}: Props) => {
   return (
   
     <>
-      {listItems.map((item) => (
+    
+      {listItems.map((item) => 
+      editingItem?.id === item.id ? (
+        <Form
+            key={item.id}
+            handleToggleForm={handleToggleForm}
+            handleAddTask={handleAddTask}
+            editingItem={editingItem}
+          />
+        ) : (
         <ListItem
           key={item.id}
           sx={{
+            padding: 0,
             backgroundColor: 'white',
             color: 'black',
             borderRadius: 1,

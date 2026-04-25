@@ -14,7 +14,6 @@ export interface ListItem {
 
 const ToDoList = () => {
   const nextId =useRef(1);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const [listItems, setListItems] = useState<ListItem[]>([]);
   // const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -55,7 +54,7 @@ const ToDoList = () => {
     const item = listItems.find(item => item.id === id);
     if (item) {
       setEditingItem(item);
-      // setIsOpen(true);
+      setIsAdding(true);
     }
   };
 
@@ -70,7 +69,6 @@ const ToDoList = () => {
       }}
     >
       <Button
-      ref={buttonRef}
       onClick={() => handleToggleForm()}
         sx={{
           gridArea: '1 / 1 / 2 / 2',
@@ -110,19 +108,20 @@ const ToDoList = () => {
           }}
         >
           <ListItemComponent 
-            listItems={listItems} 
-            handleDeleteTask={handleDeleteTask} 
-            handleTaskCompletion={handleTaskCompletion} 
+            listItems={listItems}
+            editingItem={editingItem}           // ← add
+            handleDeleteTask={handleDeleteTask}
+            handleTaskCompletion={handleTaskCompletion}
             handleEditTask={handleEditTask}
-            />
-          {isAdding && (
-            <Form
-              handleToggleForm={handleToggleForm}
-              handleAddTask={handleAddTask}
-              // isOpen={isOpen}
-              editingItem={null}
-              buttonRef={buttonRef}
-            />
+            handleAddTask={handleAddTask}       // ← add
+            handleToggleForm={handleToggleForm} // ← add
+                      />
+          {isAdding && !editingItem && (
+          <Form
+            handleToggleForm={handleToggleForm}
+            handleAddTask={handleAddTask}
+            editingItem={null}
+              />
           )}
         </Stack>
       </Card>
