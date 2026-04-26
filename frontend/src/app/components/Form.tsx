@@ -51,42 +51,46 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem
               height: 100,
               width: 1250,
               display: 'grid',
-              gridTemplate: '1fr .5fr / 1fr 10fr 1fr 1fr',
+              gridTemplate: '1fr / 1fr 8fr 1fr 1fr',
               
           }}
         >
+         
           <input
             placeholder="Task description"
             type="text"
             value={task}
             onChange={(e) => setTask(e.target.value)}
             style={{
-              width: '500',
+              outline: 'none',  
+              width: '400',
               border: 'none',
               fontFamily: 'tahoma',
               fontSize: '28px',
               gridArea: '1/2/2/3',
               padding: '10px',
-              paddingLeft: '28px'
+              paddingLeft: '28px',
+              color: 'light gray',
             }}  
           />
-          <input
+          {/* <input
             placeholder="Date & Time"
             type="datetime-local"
             value={dateTime}
             onChange={(e) => setDateTime(e.target.value)}
             style={{
+              outline: 'none',
               border: 'none',
               fontFamily: 'tahoma',
               fontSize: '14px',
-              color: 'gray',
+              color: 'light gray',
               gridArea: '2/2/3/3',
               padding: '10px',
               width: '200px',
               paddingLeft: '28px'
-            }}
+            }} */}
           
-          />
+          
             <Button
               type="button"
               onClick={() => {handleToggleForm()}}
@@ -95,11 +99,12 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem
               style={{
                 backgroundColor: 'red',
                 color: 'white',
-                fontSize: '14px',
+                fontSize: '18px',
                 textTransform: 'none',
                 gridArea: '1/4/3/5',
-                height: '40px',
+                height: '50px',
                 placeSelf: 'center',
+                width: '80px'
               }}
               >
               Cancel
@@ -114,11 +119,12 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem
                 backgroundColor: 'blue',
                 color: 'white',
                 borderRadius: '2',
-                fontSize: '14px',
+                fontSize: '18px',
                 placeSelf: 'center',
                 gridArea: '1/3/3/4',
                 textTransform: 'none',
-                height: '40px',
+                height: '50px',
+                width: '80px',
               }} 
               > {editingItem ? 'Save' : '+Add'} 
               </Button>
@@ -126,4 +132,5 @@ export const Form = ({ handleToggleForm, handleAddTask, editingItem
       </Box>
     
   );
+ 
 };

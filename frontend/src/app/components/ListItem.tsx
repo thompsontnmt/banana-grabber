@@ -54,8 +54,9 @@ export const ListItemComponent = ({
             boxShadow: '0px 5px 5px 0px rgba(0,0,0,0.10)',
             fontFamily: 'tahoma',
             display: 'grid',
-            gridTemplate: '1fr / 1fr 10fr 1fr 1fr',
+            gridTemplate: '1fr / 1fr 8fr 1fr 1fr',
             textDecoration: item.isComplete ? 'line-through' : 'none',
+          
           }}
         >
 
@@ -105,7 +106,7 @@ export const ListItemComponent = ({
           {item.description}
           </div>
 
-          <div 
+          {/* <div 
             className='dateAndTime'
             style={{
               gridArea: '2/1/3/2',
@@ -116,7 +117,7 @@ export const ListItemComponent = ({
             }}
             >
               {item.dateTime ? new Date(item.dateTime).toLocaleString() : 'No date set'}
-          </div>
+          </div> */}
               </div>
 
           <IconButton>
